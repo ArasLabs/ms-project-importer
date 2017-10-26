@@ -139,7 +139,9 @@ namespace ArasProjectImporter
 
             Cursor = oldCursor;
 
-            _projectTitle = System.IO.Path.GetFileName(_mpx.ProjectFilePath);
+            ProjectProperties props = _mpx.ProjectProperties;
+
+            _projectTitle = System.IO.Path.GetFileName(props.ProjectFilePath);
 
             btnFileOpen.Enabled = false;
             btnLoad.Enabled = false;
@@ -241,7 +243,7 @@ namespace ArasProjectImporter
 
         private void backgroundWorker1_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
         {
-            ProjectHeader header = _mpx.ProjectHeader;
+            ProjectProperties header = _mpx.ProjectProperties;
 
             try
             {
@@ -285,7 +287,7 @@ namespace ArasProjectImporter
             }
         }
 
-        private void CreateProject(string wbsRoot, string projectID, ProjectHeader header)
+        private void CreateProject(string wbsRoot, string projectID, ProjectProperties header)
         {
             var topWbs = _inn.newItem();
             topWbs.setID(wbsRoot);
